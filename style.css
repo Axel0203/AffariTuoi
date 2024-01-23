@@ -120,7 +120,7 @@ header {
     justify-content: center;
 }
 
-#popup {
+.popup {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -134,11 +134,11 @@ header {
     font-size: 30px;
 }
 
-#popup p {
+.popup p {
     margin-bottom: 15px;
 }
 
-#popup button {
+.popup button {
     padding: 5%;
     background-color: #007bff;
     color: #fff;
@@ -147,6 +147,6 @@ header {
     transition: background-color 0.3s;
 }
 
-#popup button:hover {
+.popup button:hover {
     background-color: #0056b3;
 }

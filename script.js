@@ -16,6 +16,8 @@ numeri.forEach((number) => {
     });
 });
 
+
+
 //Ottengo un pacchetto radom da dare al giocatore
 const userNumber = Math.floor(Math.random() * 20);
 let userPacchetto = pacchetti[userNumber - 1];
@@ -48,7 +50,7 @@ buttons.forEach((elem) => {
         pacchiRed = pacchiRed.filter(
             (valore) => valore != paccoDaTogliere.valore
         );
-        showPopup(paccoDaTogliere.valore);
+        showPopupPerdite(paccoDaTogliere.valore);
         aggiornaNumeri();
     });
 });
@@ -93,15 +95,15 @@ function aggiornaNumeri() {
 }
 
 
-function showPopup(valore) {
-    const popup = document.getElementById("popup");
+function showPopupPerdite(valore) {
+    const popup = document.getElementById("popupPerdita");
     popup.innerHTML =
-        `<p>Hai perso: € ${valore}</p><button onclick="hidePopup()">Continua</button>`;
+        `<p>Hai perso: € ${valore}</p><button onclick="hidePopupPerdite()">Continua</button>`;
 
     popup.style.display = "block";
 }
 
-function hidePopup() {
-    const popup = document.getElementById("popup");
+function hidePopupPerdite() {
+    const popup = document.getElementById("popupPerdita");
     popup.style.display = "none";
 }
