@@ -14,4 +14,6 @@ function generaOfferta(){
     console.log("totale: " + totale)
     console.log("totaleIndex: " + totaleIndex)
     console.log("offerta: " + offerta)
+
+    return offerta
 }

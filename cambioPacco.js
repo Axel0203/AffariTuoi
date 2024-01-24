@@ -29,7 +29,6 @@ function cambiaPacco() {
     }
 }
 
-
 const popupAccettaContent = `
     <p>CAMBIO</p>
     <button onclick="showCambioPopup()">ACCETTA</button>
