@@ -3,9 +3,9 @@
 let pacchetti= [];
 let valori= [ 0, 1, 5, 10, 20, 50, 75, 100, 200, 500, 5000, 10000, 15000, 20000, 30000, 50000, 75000, 100000, 200000, 300000 ];
 let numeri = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ];
-
 let pacchiBlu = [ 0, 1, 5, 10, 20, 50, 75, 100, 200, 500];
 let pacchiRed = [ 5000, 10000, 15000, 20000, 30000, 50000, 75000, 100000, 200000, 300000 ];
+
 
 
 //Creo le coppie numero-valore e le inserisco come oggetto in pacchetti
@@ -26,6 +26,8 @@ let userPacchetto = pacchetti[userNumber - 1];
 const userPacchettoButton = document.querySelector("#n" + userNumber);
 userPacchettoButton.style.display = "none";
 document.querySelector("#userButton").innerHTML = userNumber.toString();
+
+
 
 //Aggiunta evento ad ogni bottone:
 //Disabilita bottone
@@ -51,9 +53,13 @@ buttons.forEach((elem) => {
             (valore) => valore != paccoDaTogliere.valore
         );
         showPopupPerdite(paccoDaTogliere.valore);
-        aggiornaNumeri();
+        aggiornaNumeri()
+        generaOfferta()
     });
 });
+
+
+
 
 function getRandomAndRemove(array) {
     if (array.length === 0) {
@@ -78,6 +84,8 @@ for (let i = 0; i < 10; i++) {
         `<div class="pacchiRed">` + `<h1>€ ${pacchiRed[i]}</h1>` + `</div>`;
 }
 
+
+
 //Chiamandola svuota e riempe le barre laterali con i valori dei due array leftBar e rightBar
 function aggiornaNumeri() {
     leftBar.innerHTML = "";
@@ -95,10 +103,11 @@ function aggiornaNumeri() {
 }
 
 
+
 function showPopupPerdite(valore) {
     const popup = document.getElementById("popupPerdita");
     popup.innerHTML =
-        `<p>Hai perso: € ${valore}</p><button onclick="hidePopupPerdite()">Continua</button>`;
+        `<p>Hai Aperto: € ${valore}</p><button onclick="hidePopupPerdite()">Continua</button>`;
 
     popup.style.display = "block";
 }
