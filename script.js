@@ -43,9 +43,12 @@ buttons.forEach((elem) => {
             console.log(obj.numero === id);
             return obj.numero === id;
         });
+
         console.log(paccoDaTogliere);
 
-        pacchetti = pacchetti.filter((pacchetto) => pacchetto.numero != id);
+        pacchetti = pacchetti.filter(
+            (pacchetto) => pacchetto.numero != id
+        );
         pacchiBlu = pacchiBlu.filter(
             (valore) => valore != paccoDaTogliere.valore
         );
@@ -54,7 +57,6 @@ buttons.forEach((elem) => {
         );
         showPopupPerdite(paccoDaTogliere.valore);
         aggiornaNumeri()
-
         generaOfferta()
     });
 });
