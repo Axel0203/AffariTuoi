@@ -58,6 +58,9 @@ buttons.forEach((elem) => {
         showPopupPerdite(paccoDaTogliere.valore);
         aggiornaNumeri()
         generaOfferta()
+
+        pressioni++
+        verificaPressioni()
     });
 });
 
