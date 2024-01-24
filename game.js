@@ -2,23 +2,10 @@
 
 const start = document.getElementById("start")
 start.addEventListener("click", (e) => {
-    showStartPopup()
+    //showStartPopup()
+    cambio()
 })
 
-
-function showStartPopup(valore) {
-    const popup = document.getElementById("popupStart");
-    popup.innerHTML =
-        `<p>Buona Fortuna!</p>
-            <button onclick="hideStartPopup()">Continua</button>`;
-
-    popup.style.display = "block";
-}
-
-function hideStartPopup() {
-    const popup = document.getElementById("popupStart");
-    popup.style.display = "none";
-}
 
 
 function generaOfferta(){
@@ -37,4 +24,43 @@ function generaOfferta(){
         console.log("offerta: " + offerta)
 
     */
+}
+
+function cambio(){
+    showAccettaPopup()
+}
+
+
+
+
+function showStartPopup(valore) {
+    const popup = document.getElementById("popupStart");
+    popup.innerHTML =
+        `<p>Buona Fortuna!</p>
+            <button onclick="hideStartPopup()">Continua</button>`;
+
+    popup.style.display = "block";
+}
+
+function hideStartPopup() {
+    const popup = document.getElementById("popupStart");
+    popup.style.display = "none";
+}
+
+
+const popupAccettaContent = `
+    <p>CAMBIO</p>
+    <button onclick="eseguiAzione('Azione 1')">ACCETTA</button>
+    <button onclick="hideAccettaPopup()">RIFIUTA</button>
+`;
+
+function showAccettaPopup(valore) {
+    const popup = document.getElementById("popupAccettaOfferta");
+    popup.innerHTML = popupAccettaContent
+    popup.style.display = "block";
+}
+
+function hideAccettaPopup() {
+    const popup = document.getElementById("popupAccettaOfferta");
+    popup.style.display = "none";
 }
