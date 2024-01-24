@@ -1,3 +1,5 @@
+//Genera Offerta
+
 function generaOfferta(){
     const sommaRed = pacchiRed.reduce((acc, numero) => acc + numero, 0);
     const lengtRed = pacchiRed.length
