@@ -122,11 +122,11 @@ header {
 }
 
 .popup p {
-    margin-bottom: 2vh; /* Utilizzo di viewport units per adattare il margine alla altezza della finestra */
+    margin-bottom: 2vh;
 }
 
 .popup button {
-    padding: 4%; /* Utilizzo di percentuali per adattare il padding */
+    padding: 4%;
     background-color: #0568fd;
     color: #fff;
     border: none;
@@ -137,3 +137,8 @@ header {
 .popup button:hover {
     background-color: #0056b3;
 }
+
+.hideDiv {
+    display: none;
+}
+

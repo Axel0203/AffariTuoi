@@ -42,30 +42,14 @@ const popupCambioContent = `
 `;
 
 
-
 function hideAccettaPopup() {
     const popup = document.getElementById("popupAccettaOfferta");
     popup.style.display = "none";
+
 }
 
 function hideCambioPopup () {
     const popup = document.getElementById("popupCambio")
-    popup.style.display = "none";
-}
-
-
-function showStartPopup(valore) {
-    const popup = document.getElementById("popupStart");
-    popup.innerHTML =
-        `    <p>Buona Fortuna!</p>
-             <button onclick="hideStartPopup()">Continua</button>
-        `;
-    popup.style.display = "block";
-}
-
-
-function hideStartPopup() {
-    const popup = document.getElementById("popupStart");
     popup.style.display = "none";
 }
 

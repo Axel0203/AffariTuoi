@@ -36,33 +36,43 @@ document.querySelector("#userButton").innerHTML = userNumber.toString();
 const buttons = document.querySelectorAll(".grid-button");
 buttons.forEach((elem) => {
     elem.disabled = false;
-    elem.addEventListener("click", (e) => {
-        e.target.disabled = true;
-        const id = Number(e.target.innerHTML);
-        let paccoDaTogliere = pacchetti.find((obj) => {
-            console.log(obj.numero === id);
-            return obj.numero === id;
+
+    showStartPopup("Buona Fortuna!", "Continua")
+    setTimeout(() => {
+        showStartPopup("Hai 6 tiri a disposizione", "Continua")
+    }, 1500)
+
+    setTimeout(() => {
+        elem.addEventListener("click", (e) => {
+            e.target.disabled = true;
+            const id = Number(e.target.innerHTML);
+            let paccoDaTogliere = pacchetti.find((obj) => {
+                console.log(obj.numero === id);
+                return obj.numero === id;
+            });
+
+            console.log(paccoDaTogliere);
+
+            pacchetti = pacchetti.filter(
+                (pacchetto) => pacchetto.numero != id
+            );
+            pacchiBlu = pacchiBlu.filter(
+                (valore) => valore != paccoDaTogliere.valore
+            );
+            pacchiRed = pacchiRed.filter(
+                (valore) => valore != paccoDaTogliere.valore
+            );
+            showPopupPerdite(paccoDaTogliere.valore);
+            aggiornaNumeri()
+            generaOfferta()
+
+            pressioni++
+            tiriIniziali()
         });
-
-        console.log(paccoDaTogliere);
-
-        pacchetti = pacchetti.filter(
-            (pacchetto) => pacchetto.numero != id
-        );
-        pacchiBlu = pacchiBlu.filter(
-            (valore) => valore != paccoDaTogliere.valore
-        );
-        pacchiRed = pacchiRed.filter(
-            (valore) => valore != paccoDaTogliere.valore
-        );
-        showPopupPerdite(paccoDaTogliere.valore);
-        aggiornaNumeri()
-        generaOfferta()
-
-        pressioni++
-        verificaPressioni()
     });
-});
+    })
+
+
 
 
 
@@ -120,5 +130,22 @@ function showPopupPerdite(valore) {
 
 function hidePopupPerdite() {
     const popup = document.getElementById("popupPerdita");
+    popup.style.display = "none";
+}
+
+
+
+
+function showStartPopup(valore, testoBottone) {
+    const popup = document.getElementById("popupStart");
+    popup.innerHTML =
+        `    <p>${valore}</p>
+             <button onclick="hideStartPopup()">${testoBottone}</button>
+        `;
+    popup.style.display = "block";
+}
+
+function hideStartPopup() {
+    const popup = document.getElementById("popupStart");
     popup.style.display = "none";
 }
