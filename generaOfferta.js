@@ -19,19 +19,5 @@ function generaOfferta(){
 }
 
 
-function showOffertaPopup() {
-    const popup = document.getElementById("popupOfferta");
-    const offerta = generaOfferta()
-    popup.innerHTML = `
-        <p>OFFERTA: ${offerta}</p>
-        <button onclick="">ACCETTA</button>
-        <button onclick="hideOffertaPopup()">RIFIUTA</button>
-    `;
-    popup.style.display = "block";
-}
 
-function hideOffertaPopup() {
-    const popup = document.getElementById("popupOfferta");
-    popup.style.display = "none";
-}
 

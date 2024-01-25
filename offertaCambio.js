@@ -1,4 +1,4 @@
-//Logica per Cambio o Offerta
+//Logica per Cambio od Offerta
 
 function generaAzione() {
     const numeroCasuale = Math.floor(Math.random() * 2) + 1;
