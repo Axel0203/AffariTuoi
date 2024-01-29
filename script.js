@@ -185,8 +185,9 @@ function fineGioco(valore) {
     const popup = document.getElementById("popupOfferta");
     document.querySelector("#userButton").innerHTML = valore + "€"
     popup.innerHTML = `
-    <h2>Game Over</h2>
-    <p>punteggio : ${offerta}€</p>
+    <h2>Hai accettato: </h2>
+    <p>Valore: ${offerta}€</p>
+    <button id="start"  >START</button>
     `;
 }
 
