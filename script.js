@@ -1,12 +1,11 @@
 // Affari Tuoi 22/01/2024, Axel e Giacomo
 
 let pacchetti= [];
-let valori= [ 0, 1, 5, 10, 20, 50, 75, 100, 200, 500, 5000, 10000, 15000, 20000, 30000, 50000, 75000, 100000, 200000, 300000 ];
 let numeri = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ];
 let pacchiBlu = [ 0, 1, 5, 10, 20, 50, 75, 100, 200, 500];
 let pacchiRed = [ 5000, 10000, 15000, 20000, 30000, 50000, 75000, 100000, 200000, 300000 ];
-
-let array = [];
+let offerta = 0;
+const pressioneImportante = [];
 
 let pressioni = 0
 
@@ -14,7 +13,8 @@ const start = document.getElementById("start");
 const gridContainer = document.getElementById("grid-container")
 
 start.addEventListener("click", (e) => {
-//Creo le coppie numero-valore e le inserisco come oggetto in pacchetti
+    //Creo le coppie numero-valore e le inserisco come oggetto in pacchetti
+    let valori= [ 0, 1, 5, 10, 20, 50, 75, 100, 200, 500, 5000, 10000, 15000, 20000, 30000, 50000, 75000, 100000, 200000, 300000 ];
     numeri.forEach((number) => {
         pacchetti.push({
             numero: number,
@@ -22,145 +22,70 @@ start.addEventListener("click", (e) => {
         });
     });
 
-
-//reimpio l'array dei tiri
-    array.push(6)
-    const valoriCentrali = [3, 2, 1, 3, 2, 1];
-
-    for (let i = valoriCentrali.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [valoriCentrali[i], valoriCentrali[j]] = [valoriCentrali[j], valoriCentrali[i]];
+    //riempio l'array di quando succede qualcosa(Offerta o scambio)
+    pressioneImportante.push(6)
+    const valoriCentrali = [4,3,2];
+    for (let i = 0; i < 4; i++) {
+        pressioneImportante.push(pressioneImportante[i] + getRandomElementFromArray(valoriCentrali))
     }
-    array.push(...valoriCentrali);
-    array.push(2)
-
-    console.log(array)
+    console.log(pressioneImportante)
 
 
-
-//Ottengo un pacchetto radom da dare al giocatore
+    //Ottengo un pacchetto random da dare al giocatore
     const userNumber = Math.floor(Math.random() * 20);
     let userPacchetto = pacchetti[userNumber - 1];
 
-//rimuovo dai pacchetti selezionabili il pacchetto che è adesso dell'user
-    const userPacchettoButton = document.querySelector("#n" + userNumber);
+    //rimuovo dai pacchetti selezionabili il pacchetto che è adesso dell'user
+    const userPacchettoButton = document.querySelector("#n" + userPacchetto.numero);
     userPacchettoButton.style.display = "none";
-    document.querySelector("#userButton").innerHTML = userNumber.toString();
+    document.querySelector("#userButton").innerHTML = userPacchetto.numero.toString();
 
 
 
-//Aggiunta evento a ogni bottone:
-//Disabilita bottone
-//Rimozione oggetto pacchetto da array pacchetti
-//Rimuove il valore del pacchetto dagli array pacchiBlue e pacchiRed
+    //Aggiunta evento a ogni bottone:
+    //Disabilita bottone
+    //Rimozione oggetto pacchetto da array pacchetti
+    //Rimuove il valore del pacchetto dagli array pacchiBlue e pacchiRed
     const buttons = document.querySelectorAll(".grid-button");
     buttons.forEach((elem) => {
         elem.disabled = false;
-
-        showStartPopup("Buona Fortuna!", "Continua")
-
-        setTimeout(() => {
-            showStartPopup("Hai 6 tiri a disposizione", "Continua")
-        }, 1000)
-
-        setTimeout(() => {
-            elem.addEventListener("click", (e) => {
-                e.target.disabled = true;
-                const id = Number(e.target.innerHTML);
-                let paccoDaTogliere = pacchetti.find((obj) => {
-                    console.log(obj.numero === id);
-                    return obj.numero === id;
-                });
-
-                console.log(paccoDaTogliere);
-
-                pacchetti = pacchetti.filter(
-                    (pacchetto) => pacchetto.numero != id
-                );
-                pacchiBlu = pacchiBlu.filter(
-                    (valore) => valore != paccoDaTogliere.valore
-                );
-                pacchiRed = pacchiRed.filter(
-                    (valore) => valore != paccoDaTogliere.valore
-                );
-                showPopupPerdite(paccoDaTogliere.valore);
-                aggiornaNumeri()
-                generaOfferta()
-
-                pressioni++
-
-                if (pressioni === 6) {
-                    gridContainer.style.display = "none"
-
-                    setTimeout((e) => {
-                        console.log("Hai premuto sei pulsanti");
-                        const azione = generaAzione()
-                        if(azione === 1) showOffertaPopup()
-                        if(azione === 2) showAccettaPopup()
-                    }, 2000)
-
-                    showStartPopup("Hai 6 tiri a disposizione", "Continua")
-                }
-
-                if (pressioni === 9) {
-                    gridContainer.style.display = "none"
-                    setTimeout((e) => {
-                        const azione = generaAzione()
-                        if(azione === 1) showOffertaPopup()
-                        if(azione === 2) showAccettaPopup()
-                    }, 2000)
-                }
-
-                if (pressioni === 11) {
-                    gridContainer.style.display = "none"
-                    setTimeout((e) => {
-                        const azione = generaAzione()
-                        if(azione === 1) showOffertaPopup()
-                        if(azione === 2) showAccettaPopup()
-                    }, 2000)
-                }
-
-                if (pressioni === 12){
-                    gridContainer.style.display = "none"
-                    setTimeout((e) => {
-                        const azione = generaAzione()
-                        if(azione === 1) showOffertaPopup()
-                        if(azione === 2) showAccettaPopup()
-                    }, 2000)
-                }
-
-                if (pressioni === 15){
-                    gridContainer.style.display = "none"
-                    setTimeout((e) => {
-                        const azione = generaAzione()
-                        if(azione === 1) showOffertaPopup()
-                        if(azione === 2) showAccettaPopup()
-                    }, 2000)
-                }
-
-                if (pressioni === 17){
-                    gridContainer.style.display = "none"
-                    setTimeout((e) => {
-                        const azione = generaAzione()
-                        if(azione === 1) showOffertaPopup()
-                        if(azione === 2) showAccettaPopup()
-                    }, 2000)
-                }
-
-                if (pressioni === 18){
-                    gridContainer.style.display = "none"
-                    setTimeout((e) => {
-                        const azione = generaAzione()
-                        if(azione === 1) showOffertaPopup()
-                        if(azione === 2) showAccettaPopup()
-                    }, 2000)
-                }
-
-
-                console.log(pressioni)
+        elem.addEventListener("click", (e) => {
+            e.target.disabled = true;
+            const id = Number(e.target.innerHTML);
+            let paccoDaTogliere = pacchetti.find((obj) => {
+                console.log(obj.numero === id);
+                return obj.numero === id;
             });
+
+            console.log(paccoDaTogliere);
+
+            pacchetti = pacchetti.filter(
+                (pacchetto) => pacchetto.numero != id
+            );
+            pacchiBlu = pacchiBlu.filter(
+                (valore) => valore != paccoDaTogliere.valore
+            );
+            pacchiRed = pacchiRed.filter(
+                (valore) => valore != paccoDaTogliere.valore
+            );
+            e.target.innerHTML = paccoDaTogliere.valore + "€"
+            aggiornaNumeri()
+            generaOfferta()
+
+            pressioni++
+
+
+            if (pressioneImportante.includes(pressioni)){
+                gridContainer.style.display = "none"
+                const azione = generaAzione()
+                if(azione === 1) showOffertaPopup(userPacchetto.valore)
+                if(azione === 2) showAccettaPopup()
+            }
+            console.log(pressioni)
         });
+        
     })
+    showStartPopup("Buona Fortuna!", "Continua")
 })
 
 
@@ -239,12 +164,12 @@ function hideStartPopup() {
 }
 
 
-function showOffertaPopup() {
+function showOffertaPopup(valore) {
     const popup = document.getElementById("popupOfferta");
-    const offerta = generaOfferta()
+    offerta = generaOfferta()
     popup.innerHTML = `
         <p>OFFERTA: ${offerta}</p>
-        <button onclick="">ACCETTA</button>
+        <button onclick="fineGioco(${valore})">ACCETTA</button>
         <button onclick="hideOffertaPopup()">RIFIUTA</button>
     `;
     popup.style.display = "block";
@@ -254,6 +179,15 @@ function hideOffertaPopup() {
     const popup = document.getElementById("popupOfferta");
     popup.style.display = "none";
     gridContainer.style.display = "grid"
+}
+
+function fineGioco(valore) {
+    const popup = document.getElementById("popupOfferta");
+    document.querySelector("#userButton").innerHTML = valore + "€"
+    popup.innerHTML = `
+    <h2>Game Over</h2>
+    <p>punteggio : ${offerta}€</p>
+    `;
 }
 
 
@@ -297,3 +231,14 @@ function hideAccettaPopup() {
     popup.style.display = "none";
     gridContainer.style.display = "grid"
 }
+
+function getRandomElementFromArray(array) {
+    if (Array.isArray(array) && array.length > 0) {
+      const randomIndex = Math.floor(Math.random() * array.length);
+      return array[randomIndex];
+    } else {
+      console.error("Input is not a non-empty array");
+      return undefined;
+    }
+}
+  

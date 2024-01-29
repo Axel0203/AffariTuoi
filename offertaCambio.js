@@ -1,7 +1,6 @@
 //Logica per Cambio od Offerta
-
+//per adesso casuale, ma in future possibile uso di indici di rischio
 function generaAzione() {
     const numeroCasuale = Math.floor(Math.random() * 2) + 1;
-    if (numeroCasuale === 1)  return 1
-    else return 2
+    return numeroCasuale
 }
