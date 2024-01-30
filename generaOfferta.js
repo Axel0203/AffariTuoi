@@ -11,13 +11,9 @@ function generaOfferta(){
     const totaleIndex = lengtRed + lengtBlu
     const offerta = Math.floor(totale/totaleIndex)-12000
 
-    console.log("totale: " + totale)
+    /*console.log("totale: " + totale)
     console.log("totaleIndex: " + totaleIndex)
-    console.log("offerta: " + offerta)
+    console.log("offerta: " + offerta)*/
 
     return offerta
 }
-
-
-
-

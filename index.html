@@ -5,11 +5,11 @@
         <title>Affari Tuoi</title>
         <link rel="stylesheet" href="style.css">
 
-        <script defer src="script.js"></script>
         <script defer src="generaOfferta.js"></script>
         <script defer src="cambioPacco.js"></script>
         <script defer src="offertaCambio.js"></script>
-
+        <script defer src="utils.js"></script>
+        <script defer src="script.js"></script>
     </head>
     <body>
         <header>
@@ -27,10 +27,17 @@
                     <button class="buttonUser" id="userButton"></button>
                 </div>
 
-                <div id="popupStart" class="popup"></div>
-                <div id="popupPerdita" class="popup"></div>
-                <div id="popupAccettaOfferta" class="popup"></div>
-                <div id="popupCambio" class="popup"></div>
+                <div id="popupMessage" class="popup"></div>
+                <div id="popupAccettaOfferta" class="popup">
+                    <p>CAMBIO</p>
+                    <button onclick="showCambioPopup()">ACCETTA</button>
+                    <button onclick="hideAccettaPopup()">RIFIUTA</button>
+                </div>
+                <div id="popupCambio" class="popup">
+                    <p>Che pacco vuoi prendere ? </p>
+                    <input type="number" id="popupCambioNumeroInput" placeholder="Inserisci un numero">
+                    <button onclick="cambioPacchetto()">Cambia</button>
+                </div>
                 <div id="popupOfferta" class="popup"></div>
                 <div id="popupVittoria" class="popup"></div>
 
