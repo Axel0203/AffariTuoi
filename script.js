@@ -18,10 +18,12 @@ const popupMessage = document.getElementById("popupMessage");
 
 const startGame = () =>{
     //inizializzazione parametri di gioco
+    popupOfferta.style.display = "none"
+    gridContainer.style.display = "grid"
     pressioni = 0
     pacchiBlu = [ 0, 1, 5, 10, 20, 50, 75, 100, 200, 500];
     pacchiRed = [ 5000, 10000, 15000, 20000, 30000, 50000, 75000, 100000, 200000, 300000 ];
-
+    resetGrid();
     //Creo le coppie numero-valore e le inserisco come oggetto in pacchetti
     pacchetti= [];
     let valori= [ 0, 1, 5, 10, 20, 50, 75, 100, 200, 500, 5000, 10000, 15000, 20000, 30000, 50000, 75000, 100000, 200000, 300000 ];
@@ -92,17 +94,15 @@ const startGame = () =>{
                 if(azione === 1) showOffertaPopup()
                 if(azione === 2) showAccettaPopup()
             }
+            if (pressioni === 19){
+                gridContainer.style.display = "none"
+                bottonePacchettoUser.innerHTML = "€" + userPacchetto.valore;
+                showEndPopup("HAI VINTO " + "€" + userPacchetto.valore)
+            }
         });
-        
     })
     //Inserimento dei valori pacchiBlu e pacchiRossi nelle barre laterali
-    for (let i = 0; i < 10; i++) {
-        leftBar.innerHTML +=
-            `<div class="pacchiBlu">` + `<h1>€ ${pacchiBlu[i]}</h1>` + `</div>`;
-
-        rightBar.innerHTML +=
-            `<div class="pacchiRed">` + `<h1>€ ${pacchiRed[i]}</h1>` + `</div>`;
-    }
+    aggiornaNumeri();
     showMessagePopup("Buona Fortuna!", "Continua")
 }
 
@@ -124,6 +124,16 @@ function aggiornaNumeri() {
     });
 }
 
+function showEndPopup(Message) {
+    popupMessage.innerHTML =
+        `    <p>${Message}</p>
+             <button onclick="startGame()">RESTART</button>
+        `;
+        popupMessage.style.display = "block";
+}
+function hideMessagePopup() {
+    popupMessage.style.display = "none";
+}
 
 //show and hide message popup
 function showMessagePopup(Message, testoBottone) {
@@ -156,7 +166,7 @@ function accettaOfferta() {
     popupOfferta.innerHTML = `
     <h2>Hai accettato: </h2>
     <p>Valore: ${offerta}€</p>
-    <button onclick="startGame()" >RESTART?</button>
+    <button onclick="startGame()" >RESTART</button>
     `;
 }
 
@@ -194,4 +204,29 @@ function cambioPacchetto(){
     
     document.querySelector("#userButton").innerHTML = userPacchetto.numero.toString();
     document.getElementById("popupCambio").style.display = "none"
+}
+
+function resetGrid(){
+    gridContainer.innerHTML =`
+    <button class="grid-button" id="n1">1</button>
+    <button class="grid-button" id="n2">2</button>
+    <button class="grid-button" id="n3">3</button>
+    <button class="grid-button" id="n4">4</button>
+    <button class="grid-button" id="n5">5</button>
+    <button class="grid-button" id="n6">6</button>
+    <button class="grid-button" id="n7">7</button>
+    <button class="grid-button" id="n8">8</button>
+    <button class="grid-button" id="n9">9</button>
+    <button class="grid-button" id="n10">10</button>
+    <button class="grid-button" id="n11">11</button>
+    <button class="grid-button" id="n12">12</button>
+    <button class="grid-button" id="n13">13</button>
+    <button class="grid-button" id="n14">14</button>
+    <button class="grid-button" id="n15">15</button>
+    <button class="grid-button" id="n16">16</button>
+    <button class="grid-button" id="n17">17</button>
+    <button class="grid-button" id="n18">18</button>
+    <button class="grid-button" id="n19">19</button>
+    <button class="grid-button" id="n20">20</button>
+    `
 }
